@@ -7,5 +7,5 @@ appVersion: "0.3.0"
 
 keywords:
   - mlflow
-home: https://github.com/mlops-for-all/helm-charts
+home: https://github.com/okpo65/helm_chart_mlflow
 icon: https://mlflow.org/docs/latest/_static/MLflow-logo-final-black.png

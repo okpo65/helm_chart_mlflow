@@ -1,0 +1,17 @@
+replicaCount: 1
+
+image:
+    repository: jihwan2312/mlflow
+    tag: 0.1
+    pullPolicy: IfNotPresent
+
+db:
+  backendStoreUri: postgresql://mlflow:mlflow@172.16.20.110:5432/mlflow
+
+s3:
+    endpointUrl: http://172.16.20.110:9001
+    accessKeyId: minio
+    secretAccessKey: minio123
+    bucket: mlflow
+
+resources: {}
