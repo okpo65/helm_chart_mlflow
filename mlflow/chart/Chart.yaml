@@ -1,5 +1,5 @@
 apiVersion: v1
-name: mlflow-server
+name: mlflow-server2
 description: MLflow tracking server with external backend-store and artifacts-store
 
 version: "0.3.0"

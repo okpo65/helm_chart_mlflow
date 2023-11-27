@@ -5,10 +5,10 @@ LABEL maintainer="Jihwan Kim <okpo65@gmail.com>"
 RUN apt-get update -y && \
     apt-get install -y --no-install-recommends build-essential libpq-dev
 
-ENV AWS_BUCKET mlflow
-ENV AWS_ACCESS_KEY_ID s3_access_key_id
-ENV AWS_SECRET_ACCESS_KEY s3_secret_access_key
-ENV MLFLOW_S3_ENDPOINT_URL http://minio-service.kubeflow.svc.cluster.local:9000
+ENV AWS_ACCESS_KEY_ID access_key
+ENV AWS_SECRET_ACCESS_KEY secret_key
+ENV MLFLOW_S3_ENDPOINT_URL http://172.16.20.110:9001
+
 ENV PORT 5000
 
 EXPOSE $PORT

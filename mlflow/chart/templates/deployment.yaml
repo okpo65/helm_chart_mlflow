@@ -2,23 +2,23 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   namespace: {{ .Release.Namespace | quote }}
-  name: mlflow-server
+  name: mlflow-server2
   labels:
-    app.kubernetes.io/name: mlflow-server
+    app.kubernetes.io/name: mlflow-server2
 spec:
   replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-      app.kubernetes.io/name: mlflow-server
+      app.kubernetes.io/name: mlflow-server2
   strategy:
     type: RollingUpdate
   template:
     metadata:
       labels:
-        app.kubernetes.io/name: mlflow-server
+        app.kubernetes.io/name: mlflow-server2
     spec:
       containers:
-        - name: mlflow-server
+        - name: mlflow-server2
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: "{{ .Values.image.pullPolicy }}"
           ports:

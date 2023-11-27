@@ -2,7 +2,7 @@ replicaCount: 1
 
 image:
     repository: jihwan2312/mlflow
-    tag: 0.1
+    tag: 1.3
     pullPolicy: IfNotPresent
 
 db:
