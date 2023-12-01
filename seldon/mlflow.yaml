@@ -1,0 +1,53 @@
+apiVersion: machinelearning.seldon.io/v1
+kind: SeldonDeployment
+metadata:
+  name: seldon-example
+  namespace: kubeflow-user-example-com
+spec:
+  name: model
+  predictors:
+  - name: model
+
+    componentSpecs:
+    - spec:
+        volumes:
+        - name: model-provision-location
+          emptyDir: {}
+
+        initContainers:
+        - name: model-initializer
+          image: seldonio/rclone-storage-initializer:1.17.0-dev
+          args:
+            - "minio://mlflow/0/9b399f9da7654400ab6865cdf776f915/artifacts/svc_iris"
+            - "/mnt/models"
+          volumeMounts:
+          - mountPath: /mnt/models
+            name: model-provision-location
+
+          envFrom:
+          - secretRef:
+              name: seldon-minio-secret
+
+        containers:
+        - name: model
+          image: seldonio/mlflowserver:1.17.0-dev
+          volumeMounts:
+          - mountPath: /mnt/models
+            name: model-provision-location
+            readOnly: true
+          securityContext:
+            privileged: true
+            runAsUser: 0
+            runAsGroup: 0
+
+    graph:
+      name: model
+      type: MODEL
+      parameters:
+      - name: model_uri
+        type: STRING
+        value: "/mnt/models"
+      - name: xtype
+        type: STRING
+        value: "dataframe"
+      children: []
